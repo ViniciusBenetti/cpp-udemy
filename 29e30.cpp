@@ -17,9 +17,10 @@ int encaixa(const int numero1,const int numero2){
     int contador = 0;
     if(numero1 > numero2){
         for(int i = 0;i < numero1tam;i++){
-            for(int j = 0;j<i+numero2tam;j++){
+            for(int j = 0;j<numero2tam;j++){
                 if(numero1str[i] == numero2str[j]){
                     contador++;
+                    break;
                 }
             }
         }if(contador == numero2tam){
@@ -29,9 +30,10 @@ int encaixa(const int numero1,const int numero2){
     }
     if(numero2 > numero1){
         for(int i = 0;i < numero2tam;i++){
-            for(int j = 0;j<i+numero1tam;j++){
+            for(int j = 0;j<numero1tam;j++){
                 if(numero2str[i] == numero1str[j]){
                     contador++;
+                    break;
                 }
             }
         }if(contador == numero1tam){
@@ -52,12 +54,16 @@ int contadigitos(const int numero, const int digito){
 
 
     const int numerotam = numerostr.size();
-    
+    const int digitotam = digitostr.size();
     
     for(int i = 0;i<numerotam;i++){
-        if (digitostr[0] == numerostr[i]){
-            contador++;
+        for(int j=0;j<digitotam;j++){
+            if (digitostr[j] == numerostr[i]){
+                contador++;
+                break;
         }
+        }
+        
     }
 
     return contador;
