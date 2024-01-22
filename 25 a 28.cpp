@@ -41,7 +41,7 @@ int main(){
     << std::endl;
     return 0;
 
-}
+
  /*Para n alunos de uma determinada classe são dadas as 3 notas das provas. Calcular a média aritmética 
     das provas de cada aluno, a média da classe, o número de aprovados e o número de reprovados (critério de aprovação:
     média maior ou igual a cinco).*/
