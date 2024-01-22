@@ -1,48 +1,49 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 int contadigitos(const int numero, const int digito);
 int encaixa(const int numero1,const int numero2);
 
 
 int encaixa(const int numero1,const int numero2){
-
-    if((numero1 - numero2)%10 == 0 && numero1>=numero2){
-        return 1;
-    }
+        
     std::string numero1str = std::to_string(numero1);
     std::string numero2str = std::to_string(numero2);
-    int numero2tam = numero1str.size();
     int numero1tam = numero1str.size();
+    int numero2tam = numero2str.size();
     int contador = 0;
-    if(numero1 > numero2){
-        for(int i = 0;i < numero1tam;i++){
-            for(int j = 0;j<numero2tam;j++){
-                if(numero1str[i] == numero2str[j]){
-                    contador++;
-                    break;
-                }
-            }
-        }if(contador == numero2tam){
-            return 2;
-        }
-
+    if(numero2 == numero1){
+        return 1;
     }
     if(numero2 > numero1){
-        for(int i = 0;i < numero2tam;i++){
-            for(int j = 0;j<numero1tam;j++){
-                if(numero2str[i] == numero1str[j]){
+        for(int i=numero1tam-1;i>=0;i--){
+                if(numero1str[i]==numero2str[i]){
                     contador++;
-                    break;
                 }
+                
+
             }
-        }if(contador == numero1tam){
+        if(contador == numero1tam){
+            return 1;
+
+        }
+        auto achou = std::search(numero2str.begin(),numero2str.end(),numero1str.begin(),numero1str.end());
+
+        if(achou != numero2str.end()){
+            return 2;
+        }
+        
+        }
+        if(numero1 > numero2){
+            auto achou = std::search(numero1str.begin(),numero1str.end(),numero2str.begin(),numero2str.end());
+            if(achou != numero1str.end()){
             return 3;
         }
+        }
+        return 0;   
     }
-    return 0;
 
-}
 
 int contadigitos(const int numero, const int digito){
     int numeroabs = abs(numero);
@@ -137,10 +138,10 @@ Obs.: Considere que o dígito 0 (zero) não aparece nos números.
             std::cout << b << " encaixa em " << a << std::endl;
             break;
         case 2:
-            std::cout << b << " é segmento de " << a << std::endl;
+            std::cout << a << " é segmento de " << b << std::endl;
             break; 
         case 3:
-            std::cout << a << " é segmento de " << b << std::endl;
+            std::cout << b << " é segmento de " << a << std::endl;
             break;
         default:
             break;
