@@ -17,20 +17,15 @@ int encaixa(const int numero1,const int numero2){
         return 1;
     }
     if(numero2 > numero1){
-        for(int i=numero1tam-1;i>=0;i--){
-                if(numero1str[i]==numero2str[i]){
-                    contador++;
-                }
-                
-
-            }
-        if(contador == numero1tam){
-            return 1;
-
-        }
+        
+        auto encaixa = std::search(numero2str.end()-numero1tam,numero2str.end(),numero1str.begin(),numero1str.end());
         auto achou = std::search(numero2str.begin(),numero2str.end(),numero1str.begin(),numero1str.end());
 
-        if(achou != numero2str.end()){
+        if(encaixa != numero2str.end()){
+            return 1;
+        }
+
+        if(achou!= numero2str.end()){
             return 2;
         }
         
@@ -135,7 +130,7 @@ Obs.: Considere que o dígito 0 (zero) não aparece nos números.
             break;
 
         case 1:
-            std::cout << b << " encaixa em " << a << std::endl;
+            std::cout << a << " encaixa em " << b << std::endl;
             break;
         case 2:
             std::cout << a << " é segmento de " << b << std::endl;
